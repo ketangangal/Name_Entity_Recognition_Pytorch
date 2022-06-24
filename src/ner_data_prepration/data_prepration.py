@@ -53,4 +53,4 @@ class Preprocessing:
 
         # Map word-id and label id into main data
         panx_en_encoded = self.encode_en_dataset(self.en_data)
-        return panx_en_encoded
+        return panx_en_encoded, self.index2tag, self.tag2index

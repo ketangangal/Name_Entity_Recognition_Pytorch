@@ -4,6 +4,13 @@ paths:
   model_weight: model_weight
 
 
+Train_Params:
+  model_name: xlm-roberta-base
+  epochs: 1
+  batch_size: 512
+
+
+
 
 
 

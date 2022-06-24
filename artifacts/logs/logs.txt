@@ -1,3 +1,16 @@
-INFO [2022-06-24 15:34:01.711344]: XTREME has 183 configurations.
-INFO [2022-06-24 15:34:01.711344]: XTREME has ['PAN-X.af', 'PAN-X.ar', 'PAN-X.bg', 'PAN-X.bn', 'PAN-X.de', 'PAN-X.el', 'PAN-X.en', 'PAN-X.es', 'PAN-X.et', 'PAN-X.eu', 'PAN-X.fa', 'PAN-X.fi', 'PAN-X.fr', 'PAN-X.he', 'PAN-X.hi', 'PAN-X.hu', 'PAN-X.id', 'PAN-X.it', 'PAN-X.ja', 'PAN-X.jv', 'PAN-X.ka', 'PAN-X.kk', 'PAN-X.ko', 'PAN-X.ml', 'PAN-X.mr', 'PAN-X.ms', 'PAN-X.my', 'PAN-X.nl', 'PAN-X.pt', 'PAN-X.ru', 'PAN-X.sw', 'PAN-X.ta', 'PAN-X.te', 'PAN-X.th', 'PAN-X.tl', 'PAN-X.tr', 'PAN-X.ur', 'PAN-X.vi', 'PAN-X.yo', 'PAN-X.zh'] Subsets Taking English For Fine Tuning.
-ERROR [2022-06-24 15:34:01.711344]: Error occurred python script name [data_ingestion.py] line number [26] error message [Not enough disk space. Needed: 230.59 MiB (download: 223.17 MiB, generated: 7.30 MiB, post-processed: Unknown size)].
+INFO [2022-06-24 16:49:42.183054]: XTREME has 183 configurations.
+INFO [2022-06-24 16:49:42.183054]: XTREME has ['PAN-X.af', 'PAN-X.ar', 'PAN-X.bg', 'PAN-X.bn', 'PAN-X.de', 'PAN-X.el', 'PAN-X.en', 'PAN-X.es', 'PAN-X.et', 'PAN-X.eu', 'PAN-X.fa', 'PAN-X.fi', 'PAN-X.fr', 'PAN-X.he', 'PAN-X.hi', 'PAN-X.hu', 'PAN-X.id', 'PAN-X.it', 'PAN-X.ja', 'PAN-X.jv', 'PAN-X.ka', 'PAN-X.kk', 'PAN-X.ko', 'PAN-X.ml', 'PAN-X.mr', 'PAN-X.ms', 'PAN-X.my', 'PAN-X.nl', 'PAN-X.pt', 'PAN-X.ru', 'PAN-X.sw', 'PAN-X.ta', 'PAN-X.te', 'PAN-X.th', 'PAN-X.tl', 'PAN-X.tr', 'PAN-X.ur', 'PAN-X.vi', 'PAN-X.yo', 'PAN-X.zh'] Subsets Taking English For Fine Tuning.
+INFO [2022-06-24 16:49:42.183054]: Dataset Info : DatasetDict({
+    validation: Dataset({
+        features: ['tokens', 'ner_tags', 'langs'],
+        num_rows: 10000
+    })
+    test: Dataset({
+        features: ['tokens', 'ner_tags', 'langs'],
+        num_rows: 10000
+    })
+    train: Dataset({
+        features: ['tokens', 'ner_tags', 'langs'],
+        num_rows: 20000
+    })
+}).
