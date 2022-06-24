@@ -1,0 +1,3 @@
+# Base requirements
+transformers[tf,torch,sentencepiece,vision,optuna,sklearn,onnxruntime]==4.11.3
+seqeval==1.2.2
