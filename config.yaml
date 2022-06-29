@@ -1,13 +1,51 @@
 paths:
-  artificats: artifacts
+  artifacts: artifacts
+  data_store: data
   logs: logs
   model_weight: model_weight
 
+data_ingestion_config:
+  dataset_name: xtreme
+  subset_name: PAN-X.en
 
-Train_Params:
-  model_name: xlm-roberta-base
-  epochs: 1
-  batch_size: 512
+data_validation_config:
+  data_split:
+    - train
+    - test
+    - validation
+
+  columns_check:
+    - tokens
+    - ner_tags
+    - langs
+
+  type_check:
+    -
+    -
+
+  null_check:
+    -
+    -
+
+Data_preprocessing:
+  ner_tags:
+    - O
+    - B-PER
+    - I-PER
+    - B-ORG
+    - I-ORG
+    - B-LOC
+    - I-LOC
+
+
+Base_model_config:
+  base_model_name: xlm-roberta-base
+  num_classes : 7
+  num_epochs: 1
+  batch_size: 16
+  save_steps: 100000
+
+
 
 
 
