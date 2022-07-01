@@ -4,7 +4,7 @@ from ner.components.data_validation import DataValidation
 from ner.components.data_prepration import DataPreprocessing
 from ner.components.model_training import TrainTokenClassifier
 from ner.exception.exception import CustomException
-from typing import Any, Dict, List, ClassVar
+from typing import Any, Dict, List
 import logging
 import sys
 
@@ -12,10 +12,10 @@ logger = logging.getLogger(__name__)
 
 
 class Pipeline:
-    def __init__(self, config: ClassVar):
+    def __init__(self, config: object):
         self.config = config
 
-    def run_data_ingestion(self) -> Dict[str: Any]:
+    def run_data_ingestion(self) -> Dict:
         try:
             logger.info(" Running Data Ingestion pipeline ")
             data_ingestion = DataIngestion(data_ingestion_config=self.config.get_data_ingestion_config())
@@ -35,7 +35,7 @@ class Pipeline:
             logger.exception(e)
             raise CustomException(e, sys)
 
-    def run_data_preparation(self, data) -> Dict[str:Any]:
+    def run_data_preparation(self, data) -> Dict:
         try:
             logger.info(" Running Data Preparation pipeline ")
             data_preprocessng = DataPreprocessing(data_preprocessing_config=self.config.get_data_preprocessing_config(),
@@ -64,6 +64,7 @@ class Pipeline:
         if sum(checks[0]) == 3:
             logger.info("Checks Completed")
             processed_data = self.run_data_preparation(data=data)
+            logger.info(f"Preprocessed Data {processed_data}")
             self.run_model_training(data=processed_data)
         else:
             logger.error("Checks Failed")
