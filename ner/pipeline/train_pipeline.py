@@ -15,7 +15,7 @@ class TrainPipeline:
     def __init__(self, config: ClassVar):
         self.config = config
 
-    def run_data_ingestion(self) -> Dict[str: Any]:
+    def run_data_ingestion(self) -> Dict:
         try:
             logger.info(" Running Data Ingestion pipeline ")
             data_ingestion = DataIngestion(data_ingestion_config=self.config.get_data_ingestion_config())
@@ -35,7 +35,7 @@ class TrainPipeline:
             logger.exception(e)
             raise CustomException(e, sys)
 
-    def run_data_preparation(self, data) -> Dict[str:Any]:
+    def run_data_preparation(self, data) -> Dict:
         try:
             logger.info(" Running Data Preparation pipeline ")
             data_preprocessng = DataPreprocessing(data_preprocessing_config=self.config.get_data_preprocessing_config(),
@@ -65,6 +65,7 @@ class TrainPipeline:
         if sum(checks[0]) == 3:
             logger.info("Checks Completed")
             processed_data = self.run_data_preparation(data=data)
+            logger.info(f"Preprocessed Data {processed_data}")
             self.run_model_training(data=processed_data)
         else:
             logger.error("Checks Failed")

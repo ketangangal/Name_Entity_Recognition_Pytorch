@@ -14,14 +14,14 @@ logger = logging.getLogger(__name__)
 
 
 class TrainTokenClassifier:
-    def __init__(self, model_training_config: ModelTrainConfig, processed_data: Dict[AnyStr:Any]):
+    def __init__(self, model_training_config: ModelTrainConfig, processed_data: Dict):
         self.model_training_config = model_training_config
         self.processed_data = processed_data
 
     def create_training_args(self):
         try:
-            logging_steps = (self.processed_data["train"][:100] // self.model_training_config.batch_size)
-
+            logging_steps = len(self.processed_data["train"].select(range(100))) // self.model_training_config.batch_size
+            
             training_args = TrainingArguments(
                 output_dir=self.model_training_config.output_dir,
                 log_level="error",
@@ -83,8 +83,8 @@ class TrainTokenClassifier:
                               args=self.create_training_args(),
                               data_collator=self.data_collector(),
                               compute_metrics=self.compute_metrics,
-                              train_dataset=self.processed_data["train"][:100],
-                              eval_dataset=self.processed_data["validation"][:10],
+                              train_dataset=self.processed_data["train"].select(range(100)),
+                              eval_dataset=self.processed_data["validation"].select(range(10)),
                               tokenizer=self.model_training_config.tokenizer)
 
             logger.info(" Training Running ")
