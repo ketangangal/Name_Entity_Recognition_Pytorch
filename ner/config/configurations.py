@@ -2,7 +2,7 @@ import os
 from ner.utils.util import read_config
 from ner.exception.exception import CustomException
 from ner.entity.config_entity import DataIngestionConfig, DataValidationConfig, DataPreprocessingConfig, \
-    ModelTrainConfig
+    ModelTrainConfig, PredictPipelineConfig
 from transformers import AutoTokenizer, AutoConfig
 from from_root import from_root
 from ner.constants import *
@@ -124,8 +124,26 @@ class Configuration:
             logger.exception(e)
             raise CustomException(e, sys)
 
-    def get_model_predict_pipeline_config(self):
-        pass
+    def get_model_predict_pipeline_config(self) -> PredictPipelineConfig:
+        try:
+            tokenizer = AutoTokenizer.from_pretrained(self.config[BASE_MODEL_CONFIG][BASE_MODEL_NAME])
+            truncation = self.config[PREDICT_MODEL_CONFIG][TRUNCATION]
+            is_split_into_words = self.config[PREDICT_MODEL_CONFIG][IS_SPLIT_INTO_WORDS]
+            output_dir = os.path.join(from_root(), ARTIFACTS_KEY, MODEL_WEIGHT_KEY)
+            tags = self.config[DATA_PREPROCESSING_KEY][NER_TAGS_KEY]
+
+            index2tag = {idx: tag for idx, tag in enumerate(tags)}
+            tag2index = {idx: tag for idx, tag in enumerate(tags)}
+            predict_pipeline_config = PredictPipelineConfig(tokenizer=tokenizer,
+                                                            truncation=truncation,
+                                                            is_split_into_words=is_split_into_words,
+                                                            output_dir=output_dir,
+                                                            index2tag=index2tag,
+                                                            tag2index=tag2index)
+            return predict_pipeline_config
+        except Exception as e:
+            logger.exception(e)
+            raise CustomException(e, sys)
 
 
 if __name__ == "__main__":

@@ -5,6 +5,7 @@ DATA_STORE_KEY = "data_store"
 ARTIFACTS_KEY = "artifacts"
 LOGS_KEY = "logs"
 MODEL_WEIGHT_KEY = "model_weight"
+SERIALIZED_OBJECTS = "serialized_objects"
 
 DATA_INGESTION_KEY = "data_ingestion_config"
 DATASET_NAME = "dataset_name"
@@ -28,3 +29,7 @@ NUM_EPOCHS = "num_epochs"
 BATCH_SIZE = "batch_size"
 SAVE_STEPS = "save_steps"
 
+
+PREDICT_MODEL_CONFIG = "Predict_model_config"
+TRUNCATION = "truncation"
+IS_SPLIT_INTO_WORDS = "is_split_into_words"

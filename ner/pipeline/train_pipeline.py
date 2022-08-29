@@ -11,7 +11,7 @@ import sys
 logger = logging.getLogger(__name__)
 
 
-class Pipeline:
+class TrainPipeline:
     def __init__(self, config: ClassVar):
         self.config = config
 
@@ -46,12 +46,13 @@ class Pipeline:
             logger.exception(e)
             raise CustomException(e, sys)
 
-    def run_model_training(self,data):
+    def run_model_training(self, data):
         try:
             logger.info(" Run model Training ")
             classifier = TrainTokenClassifier(model_training_config=self.config.get_model_train_pipeline_config(),
                                               processed_data=data)
             classifier.train()
+
             logger.info(" Training Completed ")
 
         except Exception as e:
@@ -68,8 +69,9 @@ class Pipeline:
         else:
             logger.error("Checks Failed")
 
+
 if __name__ == "__main__":
-    pipeline = Pipeline(Configuration())
+    pipeline = TrainPipeline(Configuration())
     pipeline.run_pipeline()
 
 

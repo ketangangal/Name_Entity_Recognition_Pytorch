@@ -17,11 +17,11 @@ class DataIngestion:
         try:
             """
             This is class is responsible for data collection from official hugging face library.
-            Cross-lingual Transfer Evaluation of Multilingual Encoders (XTREME) benchmark called WikiANN or PAN-X.
+            Cross-lingual Transfer Evaluation of Multilingual Encoders 
+            (XTREME) benchmark called WikiANN or PAN-X.
+            
             Returns: Dict of train test validation data 
             """
-            # Task Implement save data to artifacts/data_store , write check if data already exists there
-            # if not then only fetch from load_dataset
             logger.info(f"Loading Data from Hugging face ")
             pan_en_data = load_dataset(self.data_ingestion_config.dataset_name,
                                        name=self.data_ingestion_config.subset_name)

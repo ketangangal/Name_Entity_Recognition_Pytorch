@@ -1,0 +1,2 @@
+[ 2022-07-02 16:35:32,556 ] ner.config.configurations - INFO - Reading Config file
+[ 2022-07-02 16:35:32,571 ] __main__ - INFO -  Data Ingestion Log Started 

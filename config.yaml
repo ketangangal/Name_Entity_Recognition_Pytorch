@@ -3,6 +3,7 @@ paths:
   data_store: data
   logs: logs
   model_weight: model_weight
+  serialized_objects: serialized_objects
 
 data_ingestion_config:
   dataset_name: xtreme
@@ -19,14 +20,6 @@ data_validation_config:
     - ner_tags
     - langs
 
-  type_check:
-    -
-    -
-
-  null_check:
-    -
-    -
-
 Data_preprocessing:
   ner_tags:
     - O
@@ -37,7 +30,6 @@ Data_preprocessing:
     - B-LOC
     - I-LOC
 
-
 Base_model_config:
   base_model_name: xlm-roberta-base
   num_classes : 7
@@ -45,7 +37,9 @@ Base_model_config:
   batch_size: 16
   save_steps: 100000
 
-
+Predict_model_config:
+  truncation: True
+  is_split_into_words: True
 
 
 
