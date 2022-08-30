@@ -10,7 +10,7 @@ logger = logging.getLogger(__name__)
 
 
 class PredictPipeline:
-    def __init__(self, config: ClassVar):
+    def __init__(self, config):
         self.config = config
 
     def run_data_preparation(self, data: str):
@@ -22,15 +22,12 @@ class PredictPipeline:
 
             input_ids = tokenizer(data, truncation=predict_pipeline_config.truncation,
                                   is_split_into_words=predict_pipeline_config.is_split_into_words)
-
-            formatted_data = torch.tensor(input_ids).reshape(-1, 1)
+            formatted_data = torch.tensor(input_ids["input_ids"]).reshape(-1, 1)
             model = XLMRobertaForTokenClassification.from_pretrained(predict_pipeline_config.output_dir)
             outputs = model(formatted_data).logits
             predictions = torch.argmax(outputs, dim=-1)
-
-            pred_tags = [predict_pipeline_config.index2tag[i.item()] for i in predictions[0]][1:-1]
-
-            return pred_tags
+            pred_tags = [predict_pipeline_config.index2tag[i.item()] for i in predictions[1:-1]]
+            return pred_tags[1:-1]
         except Exception as e:
             logger.exception(e)
             raise CustomException(e, sys)
@@ -41,9 +38,10 @@ class PredictPipeline:
             "Input_Data": data.split(),
             "Tags": predictions
         }
+        print(response)
         return response
 
 
 if __name__ == "__main__":
     pipeline = PredictPipeline(Configuration())
-    pipeline.run_pipeline("List of years in Brazil")
+    pipeline.run_pipeline("ineuron in usa")

@@ -15,6 +15,11 @@ data_validation_config:
     - test
     - validation
 
+  type_check:
+    - 
+
+  null_check:
+
   columns_check:
     - tokens
     - ner_tags

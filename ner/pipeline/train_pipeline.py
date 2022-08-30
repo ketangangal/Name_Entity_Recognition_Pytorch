@@ -12,7 +12,7 @@ logger = logging.getLogger(__name__)
 
 
 class TrainPipeline:
-    def __init__(self, config: ClassVar):
+    def __init__(self, config):
         self.config = config
 
     def run_data_ingestion(self) -> Dict:
